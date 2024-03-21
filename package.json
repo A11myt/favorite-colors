@@ -12,18 +12,19 @@
     "@types/react-dom": "^18.2.22",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
     "react-scripts": "5.0.1",
     "tailwind": "^4.0.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "react-scripts start",
+    "dev": "set PORT=3006 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "tailwind": "tailwindcss -o src/tailwind.css",
-    "tailwind-w": "tailwindcss -o src/tailwind.css --watch"
+    "tailwind-watcher": "tailwindcss -o src/tailwind.css --watch"
   },
   "eslintConfig": {
     "extends": [

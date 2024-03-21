@@ -1,0 +1,129 @@
+[
+    {
+        "title": "Colors",
+        "color": "#ff0000",
+        "themeCollection": [
+            {
+                "title": "Fruits",
+                "colors": [
+                    {
+                        "title": "Red",
+                        "description": "This is a red color",
+                        "color": "#ff0000"
+                    },
+                    {
+                        "title": "Green",
+                        "description": "This is a green color",
+                        "color": "#00ff00"
+                    },
+                    {
+                        "title": "Blue",
+                        "description": "This is a blue color",
+                        "color": "#0000ff"
+                    },
+                    {
+                        "title": "Yellow",
+                        "description": "This is a yellow color",
+                        "color": "#ffff00"
+                    },
+                    {
+                        "title": "Purple",
+                        "description": "This is a purple color",
+                        "color": "#800080"
+                    },
+                    {
+                        "title": "Orange",
+                        "description": "This is an orange color",
+                        "color": "#ffa500"
+                    },
+                    {
+                        "title": "Brown",
+                        "description": "This is a brown color",
+                        "color": "#a52a2a"
+                    },
+                    {
+                        "title": "Pink",
+                        "description": "This is a pink color",
+                        "color": "#ffc0cb"
+                    },
+                    {
+                        "title": "Gray",
+                        "description": "This is a gray color",
+                        "color": "#808080"
+                    },
+                    {
+                        "title": "Black",
+                        "description": "This is a black color",
+                        "color": "#000000"
+                    },
+                    {
+                        "title": "White",
+                        "description": "This is a white color",
+                        "color": "#ffffff"
+                    }
+                ]
+            },
+            {
+                "title": "Future",
+                "colors": [
+                    {
+                        "title": "Silver",
+                        "description": "This is a silver color",
+                        "color": "#c0c0c0"
+                    },
+                    {
+                        "title": "Gold",
+                        "description": "This is a gold color",
+                        "color": "#ffd700"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Shapes",
+        "color": "#ff00ff",
+        "themeCollection": [
+            {
+                "title": "Basic",
+                "colors": [
+                    {
+                        "title": "Circle",
+                        "description": "This is a circle",
+                        "color": "#ff0000"
+                    },
+                    {
+                        "title": "Square",
+                        "description": "This is a square",
+                        "color": "#00ff00"
+                    },
+                    {
+                        "title": "Triangle",
+                        "description": "This is a triangle",
+                        "color": "#0000ff"
+                    }
+                ]
+            },
+            {
+                "title": "Advanced",
+                "colors": [
+                    {
+                        "title": "Pentagon",
+                        "description": "This is a pentagon",
+                        "color": "#ffff00"
+                    },
+                    {
+                        "title": "Hexagon",
+                        "description": "This is a hexagon",
+                        "color": "#800080"
+                    },
+                    {
+                        "title": "Octagon",
+                        "description": "This is an octagon",
+                        "color": "#ffa500"
+                    }
+                ]
+            }
+        ]
+    }
+]

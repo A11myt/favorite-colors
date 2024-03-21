@@ -1,35 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
-import Card from './components/card';
-import Cards from './components/cards';
+import ColorLibary, { IThemeCollection } from './components/ColorCards';
+import cardValues from './utils/colors.json';
+import { ICardLibrary } from './components/Sidebar';
 
 function App() {
+  const folder = cardValues as ICardLibrary[];
+  const [test2, setTest2] = useState<IThemeCollection[]>([]);
+
+  const openColorLibrary = (folder: ICardLibrary) => {
+    setTest2(folder.themeCollection);
+  };
+
+  const addLibrary = () => {
+    console.log('add theme');
+  }
+
   return (
-    <div className="bg-[#282c34] h-screen flex">
-      <Sidebar />
-      <div className="dark:text-white" >
-        CARDS:
-        <Cards />
+    <div className="bg-[#efeeee] dark:bg-[#282c34] dark:text-[#efeeee] flex">
+      <Sidebar folder={folder} onFolderClick={openColorLibrary} onAddLibrary={addLibrary} />
+      <div className="bg-[#efeeee] dark:bg-[#282c34] dark:text-[#efeeee] w-full" >
+        <ColorLibary cardValues={test2} />
       </div>
     </div>
   );
 }
-const cardValues = [
-  {
-      title: 'Red',
-      description: 'This is a red color',
-      color: '#ff0000'
-  },
-  {
-      title: 'Green',
-      description: 'This is a green color',
-      color: '#00ff00'
-  },
-  {
-      title: 'Blue',
-      description: 'This is a blue color',
-      color: '#0000ff'
-  }
-]
 
 export default App;
