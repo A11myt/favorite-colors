@@ -1,26 +1,12 @@
 import React, { useState } from 'react';
 import { IoIosMore, IoIosAdd, IoIosBrush, IoIosTrash } from "react-icons/io";
-import Modal from './Modal';
+import { AddColorModal, EditColorModal } from './Modals';
+import { IThemeCollection, ICard } from '../utils/ColorInterfaces';
 
-export interface IThemeCollection {
-    title: string;
-    colors: ICard[];
-}
 
-export interface ICard {
-    title?: string;
-    description?: string;
-    color: string;
-}
-
-interface IAddColorModal {
-    isOpen: boolean;
-    setIsOpen: (isOpen: boolean) => void;
-}
 
 export default function ColorLibrary({ cardValues }: { cardValues: IThemeCollection[] }) {
     const test: IThemeCollection[] = cardValues as IThemeCollection[];
-
     return (
         <div className='p-4'>
             <div className="w-full h-full">
@@ -36,9 +22,7 @@ export default function ColorLibrary({ cardValues }: { cardValues: IThemeCollect
 }
 
 function ColorCardCollection({ cards }: { cards: ICard[] }) {
-
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     return (
         <div className=" gap-4 flex flex-row justify-centerd flex-wrap ">
             {cards.map((card, index) => (
@@ -54,6 +38,7 @@ function ColorCardCollection({ cards }: { cards: ICard[] }) {
     );
 }
 
+
 export function ColorCard({ card, index }: { card: ICard, index?: number }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,26 +48,7 @@ export function ColorCard({ card, index }: { card: ICard, index?: number }) {
         <div className={cardContainer + "size-56 md:size-36  rounded-2xl"} style={{ background: card.color }}>
             <div className="flex justify-between flex-row pr-2 ">
                 <h3>{card.title}</h3>
-                <div>
-                    <button
-                        className={`flex flex-col justify-center items-center text-black p-0.5 w-12 h-12 md:w-7 md:h-7 bg-red-50/50 backdrop-blur-xl ${isOpen ? 'rounded-t-full' : 'rounded-full'}`}
-                        onClick={() => setIsOpen(!isOpen)}
-                    >
-                        {isOpen ? <IoIosAdd className='rotate-45 w-12 h-12 md:w-8 md:h-8' /> : <IoIosMore className={`rotate-90 h-8 w-8 md:h-5 md:w-5`} />}
-                    </button>
-                    {isOpen && (
-                        <div className='flex flex-col ease-in-out'>
-                            <button
-                                className={`flex flex-col justify-center items-center text-black px-0.5 w-12 h-12 md:w-7 md:h-7 bg-red-50/50 backdrop-blur-xl`} onClick={() => setIsModalOpen(true)}>
-                                <IoIosBrush className={` h-8 w-8 md:h-5 md:w-5  `} />
-                            </button>
-                            <button
-                                className={`flex flex-col justify-center items-center text-black p-0.5 w-12 h-12 md:w-7 md:h-7 bg-red-50/50 backdrop-blur-xl ${isOpen ? 'rounded-b-full' : 'rounded-full'}`}>
-                                <IoIosTrash className={` h-8 w-8 md:h-5 md:w-5 `} />
-                            </button>
-                        </div>
-                    )}
-                </div>
+                <ButtonMenu isOpen={isOpen} setIsOpen={setIsOpen} setIsModalOpen={setIsModalOpen} />
                 <EditColorModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} card={card} index={index} />
             </div>
             <p className="self-end">
@@ -92,36 +58,27 @@ export function ColorCard({ card, index }: { card: ICard, index?: number }) {
     );
 }
 
-
-function AddColorModal({ isOpen, setIsOpen }: IAddColorModal) {
-
-    const [libraryName, setlibraryName] = useState('');
-    const [libraryColor, setlibraryColor] = useState('');
-    const [libraryCollection, setlibraryCollection] = useState<IThemeCollection[]>([]);
-
+function ButtonMenu({ isOpen, setIsOpen, setIsModalOpen }: { isOpen: boolean, setIsOpen: (isOpen: boolean) => void, setIsModalOpen: (isModalOpen: boolean) => void }) {
     return (
-        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-            <div className='flex flex-col justify-center items-center w-full h-full gap-4'>
-                <h1>Add Color</h1>
-            </div>
-        </Modal>
-    );
-}
-
-function EditColorModal({ isOpen, setIsOpen, card, index }: IAddColorModal & { card: ICard, index?: number }) {
-
-    const [libraryName, setlibraryName] = useState('');
-    const [libraryColor, setlibraryColor] = useState('');
-    const [libraryCollection, setlibraryCollection] = useState<IThemeCollection[]>([]);
-
-    return (
-        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-            <div className='flex flex-col justify-center items-center w-full h-full gap-4'>
-                <h1>Edit Color</h1>
-                <span>{card.title}</span>
-                <span>{card.color}</span>
-                <span>{card.description}</span>
-            </div>
-        </Modal>
+        <div>
+            <button
+                className={`flex flex-col justify-center items-center text-black p-0.5 w-12 h-12 md:w-7 md:h-7 bg-red-50/50 backdrop-blur-xl ${isOpen ? 'rounded-t-full' : 'rounded-full'}`}
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                {isOpen ? <IoIosAdd className='rotate-45 w-12 h-12 md:w-8 md:h-8' /> : <IoIosMore className={`rotate-90 h-8 w-8 md:h-5 md:w-5`} />}
+            </button>
+            {isOpen && (
+                <div className='flex flex-col ease-in-out'>
+                    <button
+                        className={`flex flex-col justify-center items-center text-black px-0.5 w-12 h-12 md:w-7 md:h-7 bg-red-50/50 backdrop-blur-xl`} onClick={() => setIsModalOpen(true)}>
+                        <IoIosBrush className={` h-8 w-8 md:h-5 md:w-5  `} />
+                    </button>
+                    <button
+                        className={`flex flex-col justify-center items-center text-black p-0.5 w-12 h-12 md:w-7 md:h-7 bg-red-50/50 backdrop-blur-xl ${isOpen ? 'rounded-b-full' : 'rounded-full'}`}>
+                        <IoIosTrash className={` h-8 w-8 md:h-5 md:w-5 `} />
+                    </button>
+                </div>
+            )}
+        </div>
     );
 }

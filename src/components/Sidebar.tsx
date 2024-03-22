@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { IoIosAdd, IoIosBrush } from 'react-icons/io';
-import { IThemeCollection } from './ColorCards';
-import Modal from './Modal';
 import { IoIosMoon, IoIosSunny } from "react-icons/io";
-import { ColorCard, ICard } from './ColorCards';
-
-export interface ICardLibrary {
-    title: string;
-    color: string;
-    themeCollection: IThemeCollection[];
-}
+import { IThemeCollection, ICard } from '../utils/ColorInterfaces';
+import { AddLibraryModal } from './Modals';
 
 export default function Sidebar({ folder, onFolderClick, onAddLibrary }: { folder: any, onFolderClick: (folder: any) => void; onAddLibrary: () => void; }) {
 
@@ -58,81 +51,3 @@ export default function Sidebar({ folder, onFolderClick, onAddLibrary }: { folde
 }
 
 
-function AddLibraryModal({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (isOpen: boolean) => void; }) {
-    const [card, setCard] = useState<ICard>({ title: '', color: '', description: '' });
-    const [libraryCollection, setlibraryCollection] = useState<IThemeCollection[]>([]);
-
-    useEffect(() => {
-        return () => {
-            setCard({ title: '', color: '', description: '' });
-            setlibraryCollection([]);
-        }
-    }, [isOpen])
-
-    return (
-        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-            <div className='flex flex-col justify-center  items-center w-full h-full gap-4 '>
-                <h1 className='text-2xl  font-bold mb-4'>Add Theme</h1>
-
-                <div className='grid grid-cols-2 grid-flow-row h-full w-full' >
-                    <div className='gap-4 flex flex-col '>
-                        <input
-                            type="text"
-                            placeholder="Theme Name"
-                            onChange={(e) => setCard(prev => ({ ...prev, title: e.target.value }))}
-                            className='border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white p-2 rounded-md w-full'
-                        />
-                        <input
-                            type="text"
-                            placeholder="Theme Color"
-                            onChange={(e) => setCard(prev => ({ ...prev, color: e.target.value }))}
-                            className='border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white p-2 rounded-md w-full'
-                        />
-                        <textarea
-                            placeholder="Description"
-                            onChange={(e) => setCard(prev => ({ ...prev, description: e.target.value }))}
-                            className='border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white p-2 rounded-md w-full'
-                        />
-                        <div className='flex'>
-                            <input type='text' placeholder='Color Import..'
-                                className='border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white p-2 rounded-md flex-grow'
-                            />
-                            <button className='bg-black text-white py-2 px-4 rounded-md ml-4' onClick={() => console.log('Add')}>
-                                Add
-                            </button>
-                        </div>
-                        <div                                className='border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white p-2 rounded-md flex-grow'>
-
-                        </div>
-
-                    </div>
-
-
-                    <div className='flex p4 justify-center flex-col items-center'>
-                        <div className='flex flex-col p-4 size-56 justify-between rounded-xl' style={{ background: card.color == '' ? '#f3f3f3' : card.color }}>
-                            <div className="flex flex-row pr-2 ">
-                                <h3>{card.title}</h3>
-                            </div>
-                            <p className="self-end">
-                                {card.color}
-                            </p>
-                        </div>
-                        <span className='my-2'>
-                            {card.description}
-                        </span>
-                    </div>
-
-
-
-
-                </div>
-
-                <div className='flex self-end items-end'>
-                    <button className='bg-black text-white py-2 px-4 rounded-md mt-4' onClick={() => setIsOpen(false)}>
-                        Add
-                    </button>
-                </div>
-            </div>
-        </Modal >
-    );
-}
