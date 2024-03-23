@@ -3,8 +3,6 @@ import { IoIosMore, IoIosAdd, IoIosBrush, IoIosTrash } from "react-icons/io";
 import { AddColorModal, EditColorModal } from './Modals';
 import { IThemeCollection, ICard } from '../utils/ColorInterfaces';
 
-
-
 export default function ColorLibrary({ cardValues }: { cardValues: IThemeCollection[] }) {
     const test: IThemeCollection[] = cardValues as IThemeCollection[];
     return (

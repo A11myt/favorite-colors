@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Modal from './Modal';
 import { IThemeCollection, IAddColorModal, ICard } from '../utils/ColorInterfaces';
 import { } from './ColorCards';
-
+import ColorChecker from '../utils/ColorChecker';
 
 export function AddColorModal({ isOpen, setIsOpen }: IAddColorModal) {
 
@@ -61,12 +61,13 @@ export function AddLibraryModal({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
                             onChange={(e) => setCard(prev => ({ ...prev, title: e.target.value }))}
                             className='border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white p-2 rounded-md w-full'
                         />
-                        <input
-                            type="text"
-                            placeholder="Theme Color"
-                            onChange={(e) => setCard(prev => ({ ...prev, color: e.target.value }))}
+
+                        <ColorChecker
+                            value={card.color}
+                            onChange={(value) => setCard(prev => ({ ...prev, color: value }))}
                             className='border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white p-2 rounded-md w-full'
                         />
+test
                         <textarea
                             placeholder="Description"
                             onChange={(e) => setCard(prev => ({ ...prev, description: e.target.value }))}
